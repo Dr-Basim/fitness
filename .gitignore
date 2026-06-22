@@ -1,0 +1,14 @@
+# تجارب محلية
+*.bak
+*.tmp
+*.old
+
+# لا ترفع الصفحات القديمة (محذوفة يدوياً لكن احتياطياً)
+program.html
+tracker.html
+health.html
+settings.html
+
+# ملفات النظام
+.DS_Store
+Thumbs.db

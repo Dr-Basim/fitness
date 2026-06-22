@@ -1,0 +1,19 @@
+/* ToshA Taiba — جامعة طيبة الرسمية — مصدر: taibah_brand_assets */
+@font-face {
+  font-family: 'ToshA Taiba';
+  src: url('ToshA-Regular.ttf') format('truetype');
+  font-weight: 400; font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ToshA Taiba';
+  src: url('ToshA-Medium.ttf') format('truetype');
+  font-weight: 500; font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ToshA Taiba';
+  src: url('ToshA-Bold.ttf') format('truetype');
+  font-weight: 700; font-style: normal;
+  font-display: swap;
+}

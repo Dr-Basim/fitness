@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0D6B6E" />
+  <title>🏋️ Fitness Tracker v5 — Dr. Basim</title>
+  <link rel="stylesheet" href="assets/fonts.css" />
+  <link rel="stylesheet" href="pages.css" />
+  <!-- Chart.js — يُحمَّل دائماً لكن نادراً يُستخدم (فقط في قسم الصحة) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+</head>
+<body>
+
+<!-- ═══════════ HERO موحّد (النسخة الأقصر = الأحدث) ═══════════ -->
+<header class="hero hero-centered" id="hero">
+  <h1 id="hero-title">البرنامج التدريبي</h1>
+  <p class="hero-sub" id="hero-sub">شرح كامل + فيديوهات + تفاصيل كل تمرين</p>
+  <div class="hero-divider"></div>
+  <div class="hero-meta" id="hero-meta">
+    <span class="meta-item">📅 <span>5 أيام</span></span>
+    <span class="dot"></span>
+    <span class="meta-item">🏋️ <span>36 تمرين</span></span>
+    <span class="dot"></span>
+    <span class="meta-item">⏱️ <span>55-60 د/يوم</span></span>
+  </div>
+</header>
+
+<!-- ═══════════ SECTION 1: PROGRAM (read-only) ═══════════ -->
+<section data-section="program" id="section-program">
+  <main>
+    <div id="program-days"></div>
+  </main>
+</section>
+
+<!-- ═══════════ SECTION 2: TRACKER (تفاعل + كتابة) ═══════════ -->
+<section data-section="tracker" id="section-tracker" hidden>
+  <main>
+    <div class="day-selector" id="day-selector"></div>
+    <div id="tracker-content"></div>
+    <div style="text-align:center;margin:1.2rem 0 0.5rem">
+      <button class="btn" id="btn-save-now">💾 حفظ الآن</button>
+      <button class="btn secondary" id="btn-export-md">📤 تصدير Markdown</button>
+    </div>
+  </main>
+</section>
+
+<!-- ═══════════ SECTION 3: HEALTH ═══════════ -->
+<section data-section="health" id="section-health" hidden>
+  <main>
+    <h2 class="section-h">📊 المؤشرات الأساسية <span class="count">6</span></h2>
+    <div class="stats-grid" id="stats-grid"></div>
+
+    <h2 class="section-h">🧬 InBody شهري <span class="count">12 أسبوع</span></h2>
+    <div class="inbody-section">
+      <h3>📋 جدول القياسات الأسبوعية</h3>
+      <div class="inbody-wrap">
+        <table class="inbody-table" id="inbody-table"></table>
+      </div>
+      <div class="inbody-hint">اسحب الجدول يمين/يسار لمشاهدة كل الأسابيع ←</div>
+    </div>
+
+    <h2 class="section-h">📈 الرسوم البيانية <span class="count">3</span></h2>
+
+    <div class="chart-card">
+      <h3>⚖️ الوزن والكتلة العضلية</h3>
+      <div class="chart-canvas-wrap"><canvas id="chart-weight-muscle"></canvas></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>🟡 نسبة الدهون و BMI</h3>
+      <div class="chart-canvas-wrap"><canvas id="chart-fat-bmi"></canvas></div>
+    </div>
+
+    <div class="chart-card">
+      <h3>🫁 VO₂max — الهدف الأساسي</h3>
+      <div class="chart-canvas-wrap"><canvas id="chart-vo2"></canvas></div>
+    </div>
+  </main>
+</section>
+
+<!-- ═══════════ SECTION 4: SETTINGS ═══════════ -->
+<section data-section="settings" id="section-settings" hidden>
+  <main>
+    <div class="setting-card">
+      <h3>☁️ GitHub Gist</h3>
+      <p>للمزامنة بين الجوال والكمبيوتر. أنشئ Gist سري على github.com، وضع الـ ID و Personal Access Token هنا.</p>
+      <div class="setting-row">
+        <label>Gist ID</label>
+        <input type="text" id="gist-id" placeholder="abc123def456..." />
+      </div>
+      <div class="setting-row">
+        <label>Personal Access Token (scope: gist)</label>
+        <input type="password" id="gist-token" placeholder="ghp_..." />
+      </div>
+      <button class="btn" id="btn-gist-save">💾 حفظ</button>
+      <button class="btn secondary" id="btn-gist-test">🔌 اختبار</button>
+      <span id="gist-status" style="font-size:0.8rem;color:var(--t-mute)"></span>
+    </div>
+
+    <div class="setting-card">
+      <h3>📱 QR Code</h3>
+      <p>امسح من الجوال لإعدادات Gist بسرعة.</p>
+      <div class="qr-area" id="qr-area">
+        <p style="color:var(--t-mute);font-size:0.78rem">احفظ الإعدادات أولاً</p>
+      </div>
+    </div>
+
+    <div class="setting-card">
+      <h3>📤 تصدير واستيراد</h3>
+      <p>للنسخ الاحتياطي أو نقل البيانات لجهاز آخر.</p>
+      <button class="btn" id="btn-export-json">📤 تصدير JSON</button>
+      <button class="btn secondary" id="btn-import-json">📥 استيراد JSON</button>
+      <input type="file" id="import-file" accept=".json" style="display:none" />
+    </div>
+
+    <div class="setting-card">
+      <h3>📊 حالة البيانات</h3>
+      <p>ملخص ما هو محفوظ محلياً.</p>
+      <div id="stats-summary" class="stats-summary">—</div>
+    </div>
+
+    <div class="setting-card danger">
+      <h3>⚠️ منطقة الخطر</h3>
+      <p>حذف كامل للبيانات. لا يمكن التراجع.</p>
+      <button class="btn danger" id="btn-reset">🗑️ إعادة تعيين كاملة</button>
+    </div>
+  </main>
+</section>
+
+<!-- ═══════════ SVG icons (موحّد) ═══════════ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+    <symbol id="icon-dumbbell" viewBox="0 0 24 24"><path d="M14.4 14.4 9.6 9.6"/><rect x="2" y="9" width="4" height="6" rx="1"/><rect x="18" y="9" width="4" height="6" rx="1"/><rect x="6" y="10" width="12" height="4" rx="1"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 10v6M4.22 4.22l4.24 4.24m7.08 7.08l4.24 4.24M1 12h6m10 0h6M4.22 19.78l4.24-4.24m7.08-7.08 4.24-4.24"/></symbol>
+  </defs>
+</svg>
+
+<!-- ═══════════ BOTTOM NAV (4 أزرار، ديناميكي) ═══════════ -->
+<nav class="bottom-bar">
+  <a href="#program" data-nav="program" class="active" aria-label="البرنامج">
+    <svg><use href="#icon-book"/></svg>
+    <span>البرنامج</span>
+  </a>
+  <a href="#tracker" data-nav="tracker" aria-label="المتابعة">
+    <svg><use href="#icon-dumbbell"/></svg>
+    <span>المتابعة</span>
+  </a>
+  <a href="#health" data-nav="health" aria-label="الصحة">
+    <svg><use href="#icon-heart"/></svg>
+    <span>الصحة</span>
+  </a>
+  <a href="#settings" data-nav="settings" aria-label="الإعدادات">
+    <svg><use href="#icon-settings"/></svg>
+    <span>الإعدادات</span>
+  </a>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script src="data-inline.js"></script>
+<script src="app.js"></script>
+<script>
+  // ═══ تشغيل الصفحة الموحّدة — يختار القسم من hash أو الافتراضي: program ═══
+  (function () {
+    const hash = (location.hash || '#program').replace('#', '');
+    const valid = ['program', 'tracker', 'health', 'settings'];
+    const section = valid.includes(hash) ? hash : 'program';
+    window.addEventListener('DOMContentLoaded', () => {
+      // wait one tick for app.js DOMContentLoaded to finish loading STATE
+      setTimeout(() => window.initPersonalTrainer(section), 0);
+    });
+    // back/forward in browser
+    window.addEventListener('hashchange', () => {
+      const h = (location.hash || '#program').replace('#', '');
+      if (valid.includes(h)) window.initPersonalTrainer(h);
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+{
+  "version": 4.5,
+  "updated_at": "2026-06-22",
+  "source": "v4 → v4.5 (smart fields + row layout)",
+  "days": [
+    {
+      "day_num": 1,
+      "color": "teal",
+      "title": "يوم 1 — Full Body A",
+      "description": "تركيز علوي · مقاومة + Zone 2",
+      "duration": "55–60 د",
+      "phases": [
+        {
+          "name": "warmup",
+          "label": "🤸 التسخين",
+          "exercises": [
+            {"name": "دراجة 3 دقائق", "en": "Bike Warm-up", "type": "warmup", "fields": ["time"], "default": "3 د", "video": "https://www.youtube.com/watch?v=PjS6hyXfEmI"},
+            {"name": "دوائر الذراعين", "en": "Arm Circles", "type": "warmup", "fields": ["time"], "default": "× 10", "video": "https://www.youtube.com/watch?v=PjS6hyXfEmI"},
+            {"name": "تمرير العصا فوق الرأس", "en": "PVC Pass Throughs", "type": "warmup", "fields": ["time"], "default": "× 10", "video": "https://www.youtube.com/watch?v=XPdZiOTQNw0"},
+            {"name": "شد الحزام المطاطي", "en": "Band Pull-Apart", "type": "warmup", "fields": ["time"], "default": "× 15", "video": ""},
+            {"name": "القطة والبقرة", "en": "Cat-Cow", "type": "warmup", "fields": ["time"], "default": "× 8–10", "video": ""}
+          ]
+        },
+        {
+          "name": "resistance_a1",
+          "label": "🏋️ المقاومة — A1",
+          "exercises": [
+            {"name": "ضغط صدر (Machine Chest Press)", "en": "Machine Chest Press", "type": "resistance", "fields": ["weight", "reps"], "default": "3×8–10", "video": "https://www.youtube.com/watch?v=VmB1G1K7v94"},
+            {"name": "سحب أرضي (Seated Row)", "en": "Seated Cable Row", "type": "resistance", "fields": ["weight", "reps"], "default": "3×10–12", "video": "https://www.youtube.com/watch?v=GZbfZ033f74"},
+            {"name": "كتف جانبي (Machine Lateral Raise)", "en": "Machine Lateral Raise", "type": "resistance", "fields": ["weight", "reps"], "default": "3×12", "video": ""}
+          ]
+        },
+        {
+          "name": "cardio",
+          "label": "🫀 الكارديو",
+          "exercises": [
+            {"name": "Zone 2 — دراجة أو مشاية", "en": "Zone 2 Cardio", "type": "cardio", "fields": ["time", "hr"], "default": "15 د · 110-125 نبضة", "video": ""}
+          ]
+        },
+        {
+          "name": "cooldown",
+          "label": "🧖 التعافي",
+          "exercises": [
+            {"name": "إطالة ثابتة — علوي", "en": "Static Stretch Upper", "type": "stretch", "fields": ["time"], "default": "5 د", "video": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "day_num": 2,
+      "color": "amber",
+      "title": "يوم 2 — HIIT + كارديو",
+      "description": "Norwegian 4×4 · VO₂max",
+      "duration": "50–55 د",
+      "phases": [
+        {
+          "name": "warmup",
+          "label": "🤸 التسخين",
+          "exercises": [
+            {"name": "دراجة 5 دقائق تصاعدية", "en": "Bike Warm-up", "type": "warmup", "fields": ["time"], "default": "8 د", "video": ""}
+          ]
+        },
+        {
+          "name": "hiit",
+          "label": "⚡ Norwegian 4×4",
+          "exercises": [
+            {"name": "4×4 — 4 د Zone 4 + 3 د تعافي", "en": "4×4 Intervals", "type": "hiit", "fields": ["rounds", "hr_max"], "default": "4 جولات · 85-95% max", "video": ""}
+          ]
+        },
+        {
+          "name": "cooldown",
+          "label": "🧖 التعافي",
+          "exercises": [
+            {"name": "تهدئة 5 دقائق", "en": "Cool Down", "type": "warmup", "fields": ["time"], "default": "5 د", "video": ""},
+            {"name": "إطالة", "en": "Stretching", "type": "stretch", "fields": ["time"], "default": "5 د", "video": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "day_num": 3,
+      "color": "blue",
+      "title": "يوم 3 — Full Body B",
+      "description": "تركيز سفلي · أرجل",
+      "duration": "55–60 د",
+      "phases": [
+        {
+          "name": "warmup",
+          "label": "🤸 التسخين",
+          "exercises": [
+            {"name": "دراجة 3 دقائق", "en": "Bike Warm-up", "type": "warmup", "fields": ["time"], "default": "3 د", "video": ""},
+            {"name": "مشي سريع", "en": "Brisk Walk", "type": "warmup", "fields": ["time"], "default": "3 د", "video": ""}
+          ]
+        },
+        {
+          "name": "resistance_b1",
+          "label": "🏋️ المقاومة — B1 (علوي)",
+          "exercises": [
+            {"name": "سحب أرضي (Seated Row)", "en": "Seated Cable Row", "type": "resistance", "fields": ["weight", "reps"], "default": "3×10", "video": "https://www.youtube.com/watch?v=GZbfZ033f74"},
+            {"name": "ضغط كتف (Machine Shoulder Press)", "en": "Machine Shoulder Press", "type": "resistance", "fields": ["weight", "reps"], "default": "3×10", "video": ""},
+            {"name": "باي تراي (Triceps Pushdown)", "en": "Triceps Pushdown", "type": "resistance", "fields": ["weight", "reps"], "default": "3×12", "video": ""}
+          ]
+        },
+        {
+          "name": "resistance_b2",
+          "label": "🦵 المقاومة — B2 (أرجل)",
+          "exercises": [
+            {"name": "ليج برس (Leg Press Machine)", "en": "Leg Press", "type": "resistance", "fields": ["weight", "reps"], "default": "3×10", "video": ""},
+            {"name": "ليج كيرل (Leg Curl Machine)", "en": "Leg Curl", "type": "resistance", "fields": ["weight", "reps"], "default": "3×12", "video": ""},
+            {"name": "ليج إكستنشن (Leg Extension)", "en": "Leg Extension", "type": "resistance", "fields": ["weight", "reps"], "default": "3×12", "video": ""}
+          ]
+        },
+        {
+          "name": "cardio",
+          "label": "🫀 الكارديو",
+          "exercises": [
+            {"name": "Zone 2 — دراجة", "en": "Zone 2", "type": "cardio", "fields": ["time", "hr"], "default": "15 د · 110-125 نبضة", "video": ""}
+          ]
+        },
+        {
+          "name": "cooldown",
+          "label": "🧖 التعافي",
+          "exercises": [
+            {"name": "إطالة سفلي", "en": "Stretch Lower", "type": "stretch", "fields": ["time"], "default": "5 د", "video": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "day_num": 4,
+      "color": "purple",
+      "title": "يوم 4 — Zone 2 طويل",
+      "description": "استشفاء نشط · كارديو خفيف",
+      "duration": "55–60 د",
+      "phases": [
+        {
+          "name": "warmup",
+          "label": "🤸 التسخين",
+          "exercises": [
+            {"name": "مشي خفيف", "en": "Light Walk", "type": "warmup", "fields": ["time"], "default": "5 د", "video": ""}
+          ]
+        },
+        {
+          "name": "cardio_main",
+          "label": "🫀 الكارديو الرئيسي",
+          "exercises": [
+            {"name": "Zone 2 — دراجة أو بيضاوي", "en": "Zone 2 Long", "type": "cardio_long", "fields": ["time", "hr", "cal"], "default": "45 د · 110-125 نبضة", "video": ""}
+          ]
+        },
+        {
+          "name": "mobility",
+          "label": "🧘 موبيليتي",
+          "exercises": [
+            {"name": "حركات مرونة", "en": "Mobility Flow", "type": "stretch", "fields": ["time"], "default": "10 د", "video": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "day_num": 5,
+      "color": "green",
+      "title": "يوم 5 — موبيليتي شاملة",
+      "description": "تعافي + مرونة",
+      "duration": "55–60 د",
+      "phases": [
+        {
+          "name": "warmup",
+          "label": "🤸 الإحماء",
+          "exercises": [
+            {"name": "تنفس عميق + حركة", "en": "Breath + Move", "type": "warmup", "fields": ["time"], "default": "5 د", "video": ""}
+          ]
+        },
+        {
+          "name": "mobility_upper",
+          "label": "🧘 موبيليتي — علوي",
+          "exercises": [
+            {"name": "دوائر الكتف", "en": "Shoulder Circles", "type": "stretch", "fields": ["time"], "default": "× 10", "video": ""},
+            {"name": "Cat-Cow", "en": "Cat-Cow", "type": "stretch", "fields": ["time"], "default": "× 10", "video": ""},
+            {"name": "World's Greatest Stretch", "en": "World's Greatest Stretch", "type": "stretch", "fields": ["time"], "default": "× 5", "video": ""}
+          ]
+        },
+        {
+          "name": "mobility_lower",
+          "label": "🧘 موبيليتي — سفلي",
+          "exercises": [
+            {"name": "Hip CARs", "en": "Hip CARs", "type": "stretch", "fields": ["time"], "default": "× 5", "video": ""},
+            {"name": "90/90 Hip", "en": "90/90 Hip", "type": "stretch", "fields": ["time"], "default": "× 8", "video": ""},
+            {"name": "Couch Stretch", "en": "Couch Stretch", "type": "stretch", "fields": ["time"], "default": "× 60ث", "video": ""}
+          ]
+        },
+        {
+          "name": "core",
+          "label": "🫀 Core + استقرار",
+          "exercises": [
+            {"name": "بلانك", "en": "Plank", "type": "warmup", "fields": ["time"], "default": "3×30ث", "video": ""}
+          ]
+        },
+        {
+          "name": "cooldown",
+          "label": "🧖 التعافي",
+          "exercises": [
+            {"name": "إطالة كاملة", "en": "Full Body Stretch", "type": "stretch", "fields": ["time"], "default": "10 د", "video": ""}
+          ]
+        }
+      ]
+    }
+  ],
+  "health_metrics": [
+    {"key": "weight", "label": "الوزن", "unit": "كجم", "icon": "⚖️", "color": "teal"},
+    {"key": "muscle_mass", "label": "الكتلة العضلية", "unit": "كجم", "icon": "💪", "color": "blue"},
+    {"key": "fat_pct", "label": "نسبة الدهون", "unit": "%", "icon": "🟡", "color": "red"},
+    {"key": "bmi", "label": "BMI", "unit": "", "icon": "📐", "color": "purple"},
+    {"key": "vo2max", "label": "VO₂max", "unit": "ml/kg/min", "icon": "🫁", "color": "green"},
+    {"key": "resting_hr", "label": "نبض الراحة", "unit": "نبضة/د", "icon": "❤️", "color": "gold"}
+  ],
+  "weekly_metrics": [
+    {"week": 1, "weight": 84.2, "muscle_mass": 33.1, "fat_pct": 30.0, "bmi": 30.2, "vo2max": 28.4, "resting_hr": 72, "notes": "Baseline (7 يونيو)"},
+    {"week": 2, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 3, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 4, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 5, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 6, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 7, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 8, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": "InBody القادم: 2 أغسطس"},
+    {"week": 9, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 10, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 11, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""},
+    {"week": 12, "weight": null, "muscle_mass": null, "fat_pct": null, "bmi": null, "vo2max": null, "resting_hr": null, "notes": ""}
+  ]
+}
