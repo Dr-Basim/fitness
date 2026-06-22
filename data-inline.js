@@ -22,7 +22,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "3 د",
-              "video": "https://www.youtube.com/watch?v=PjS6hyXfEmI"
+              "video": ""
             },
             {
               "name": "دوائر الذراعين",
@@ -32,7 +32,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=PjS6hyXfEmI"
+              "video": "https://www.youtube.com/watch?v=oMcSAyzyQX4"
             },
             {
               "name": "تمرير العصا فوق الرأس",
@@ -72,7 +72,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "×15 @ 50% + ×8 @ 70%",
-              "video": "https://www.youtube.com/watch?v=Iwe6AmxVf7o"
+              "video": ""
             }
           ]
         },
@@ -144,7 +144,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "2–3×15–20",
-              "video": "https://www.youtube.com/watch?v=repqV8FPoXg"
+              "video": "https://www.youtube.com/watch?v=zEuseRjS7vg"
             },
             {
               "name": "Plank",
@@ -154,7 +154,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "3×45 ث",
-              "video": "https://www.youtube.com/watch?v=ASdvN_XEl_c"
+              "video": "https://www.youtube.com/watch?v=ZyWEXjdAGCQ"
             }
           ]
         },
@@ -171,7 +171,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "3×8–10",
-              "video": "https://www.youtube.com/watch?v=xfBrP_F3R9Y"
+              "video": "https://www.youtube.com/watch?v=xGMqmmn5Z7Q"
             },
             {
               "name": "Lat Pulldown (Close Grip)",
@@ -182,7 +182,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "3×8–10",
-              "video": "https://www.youtube.com/watch?v=1FCq_RfObcQ"
+              "video": "https://www.youtube.com/watch?v=hnSqbBk15tw"
             },
             {
               "name": "Chest Supported Machine Row",
@@ -193,7 +193,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "3×10–12",
-              "video": "https://www.youtube.com/watch?v=j2qo7fXkV_c"
+              "video": "https://www.youtube.com/watch?v=FTwvmczf7bE"
             },
             {
               "name": "Cable Lateral Raise (Single Arm)",
@@ -204,7 +204,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "3×12–15",
-              "video": "https://www.youtube.com/watch?v=PPrzBe7yh_k"
+              "video": "https://www.youtube.com/watch?v=f_OGBg2KxgY"
             },
             {
               "name": "Triceps Pushdown (Straight Bar)",
@@ -226,7 +226,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "2×15–20",
-              "video": "https://www.youtube.com/watch?v=repqV8FPoXg"
+              "video": "https://www.youtube.com/watch?v=P5CXx_jgTDE"
             },
             {
               "name": "Side Plank",
@@ -236,7 +236,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "3×30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=K2VJrW_rRng"
+              "video": "https://www.youtube.com/watch?v=sKMD_pbNm7w"
             }
           ]
         },
@@ -253,7 +253,7 @@ window.PROGRAM_DATA = {
                 "hr"
               ],
               "default": "15 د · 110-125 نبضة",
-              "video": "https://www.youtube.com/watch?v=OdevRNWoQmM"
+              "video": ""
             }
           ]
         },
@@ -279,7 +279,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=AWwD5O8PYRo"
+              "video": "https://www.youtube.com/watch?v=aIq0fLi8iak"
             },
             {
               "name": "Triceps Stretch (بدون إجبار)",
@@ -289,7 +289,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=meE8b3V2c-U"
+              "video": "https://www.youtube.com/watch?v=zzvDO56B0HE"
             },
             {
               "name": "Lat Stretch",
@@ -299,7 +299,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=eLxXg5VP3yE"
+              "video": "https://www.youtube.com/watch?v=5HLQAVOvxNE"
             }
           ]
         },
@@ -315,7 +315,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "12-15 د · 70-80°م",
-              "video": "https://www.youtube.com/watch?v=BLk7-DW8Awk"
+              "video": ""
             }
           ]
         }
@@ -340,7 +340,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "5 د Zone 1 + 3 د Zone 2",
-              "video": "https://www.youtube.com/watch?v=PjS6hyXfEmI"
+              "video": ""
             },
             {
               "name": "Arm Circles",
@@ -350,7 +350,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=PjS6hyXfEmI"
+              "video": "https://www.youtube.com/watch?v=oMcSAyzyQX4"
             },
             {
               "name": "Leg Swings",
@@ -360,7 +360,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10/رجل",
-              "video": "https://www.youtube.com/watch?v=3HfD3X4Q5zg"
+              "video": "https://www.youtube.com/watch?v=3l31E2cMGMk"
             },
             {
               "name": "Torso Twists",
@@ -370,7 +370,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=GgRmfpA55kY"
+              "video": "https://www.youtube.com/watch?v=cLuKHx--qJw"
             },
             {
               "name": "Hip Circles",
@@ -380,7 +380,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=zbH4XmSREoc"
+              "video": "https://www.youtube.com/watch?v=x-5h_QUOem8"
             }
           ]
         },
@@ -414,7 +414,7 @@ window.PROGRAM_DATA = {
                 "hr"
               ],
               "default": "10-15 د · RPE 2-3",
-              "video": "https://www.youtube.com/watch?v=PjS6hyXfEmI"
+              "video": ""
             },
             {
               "name": "إطالة Quads",
@@ -424,7 +424,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=2HRE7QF6K1k"
+              "video": "https://www.youtube.com/watch?v=aNXGOpP37CY"
             },
             {
               "name": "إطالة Hamstrings",
@@ -434,7 +434,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=60FfBPJB1Fg"
+              "video": "https://www.youtube.com/watch?v=u55F2jOzBVI"
             },
             {
               "name": "إطالة Glutes",
@@ -454,7 +454,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث",
-              "video": "https://www.youtube.com/watch?v=4E0lvDt2M9o"
+              "video": "https://www.youtube.com/watch?v=o4GKiEoYClI"
             },
             {
               "name": "إطالة Shoulders",
@@ -464,7 +464,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=AWwD5O8PYRo"
+              "video": "https://www.youtube.com/watch?v=aIq0fLi8iak"
             }
           ]
         },
@@ -505,7 +505,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "3 د",
-              "video": "https://www.youtube.com/watch?v=PjS6hyXfEmI"
+              "video": ""
             },
             {
               "name": "Leg Swings (أمامي/جانبي)",
@@ -515,7 +515,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10/رجل",
-              "video": "https://www.youtube.com/watch?v=3HfD3X4Q5zg"
+              "video": "https://www.youtube.com/watch?v=3l31E2cMGMk"
             },
             {
               "name": "Bodyweight Squats",
@@ -525,7 +525,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=aclHkVaku9U"
+              "video": "https://www.youtube.com/watch?v=n_xLyzPEX7A"
             },
             {
               "name": "Hip Circles",
@@ -535,7 +535,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=zbH4XmSREoc"
+              "video": "https://www.youtube.com/watch?v=x-5h_QUOem8"
             },
             {
               "name": "Walking Lunges (بدون وزن)",
@@ -555,7 +555,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=8X1YQPZ0a-M"
+              "video": "https://www.youtube.com/watch?v=IikP_teeLkI"
             },
             {
               "name": "تسخين نوعي: Leg Press",
@@ -565,7 +565,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "×15 @ 50% + ×8 @ 70%",
-              "video": "https://www.youtube.com/watch?v=IZxyjW7MPJQ"
+              "video": ""
             }
           ]
         },
@@ -637,7 +637,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "2×12–15",
-              "video": "https://www.youtube.com/watch?v=F6pcc9OqqvM"
+              "video": "https://www.youtube.com/watch?v=zhfM1Jp77ak"
             }
           ]
         },
@@ -698,7 +698,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "3×10–12/جانب",
-              "video": "https://www.youtube.com/watch?v=AH-QGqqYFAY"
+              "video": "https://www.youtube.com/watch?v=5aZ0IhJS8O8"
             },
             {
               "name": "Single-Arm Seated Cable Row أو Chest Supported Machine Row",
@@ -709,7 +709,7 @@ window.PROGRAM_DATA = {
                 "reps"
               ],
               "default": "2-3×10–12/جانب",
-              "video": "https://www.youtube.com/watch?v=roCP6wCboqo"
+              "video": "https://www.youtube.com/watch?v=yIvvQc2Z6uM"
             }
           ]
         },
@@ -725,7 +725,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "10 د",
-              "video": "https://www.youtube.com/watch?v=OdevRNWoQmM"
+              "video": ""
             }
           ]
         },
@@ -741,7 +741,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=2HRE7QF6K1k"
+              "video": "https://www.youtube.com/watch?v=aNXGOpP37CY"
             },
             {
               "name": "Seated Hamstring Stretch",
@@ -751,7 +751,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=60FfBPJB1Fg"
+              "video": "https://www.youtube.com/watch?v=aJvfeuu71gw"
             },
             {
               "name": "Figure-4 Glute Stretch",
@@ -781,7 +781,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30 ث/جانب",
-              "video": "https://www.youtube.com/watch?v=Y7Wy4nDqe70"
+              "video": "https://www.youtube.com/watch?v=tUA4MO1kXV8"
             }
           ]
         },
@@ -797,7 +797,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "8-10 د · 10-15°م",
-              "video": "https://www.youtube.com/watch?v=cZ9j8iCcJZA"
+              "video": ""
             }
           ]
         }
@@ -822,7 +822,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "5 د",
-              "video": "https://www.youtube.com/watch?v=OdevRNWoQmM"
+              "video": ""
             }
           ]
         },
@@ -840,7 +840,7 @@ window.PROGRAM_DATA = {
                 "cal"
               ],
               "default": "40-50 د · 103-125 نبضة",
-              "video": "https://www.youtube.com/watch?v=OdevRNWoQmM"
+              "video": ""
             }
           ]
         },
@@ -856,7 +856,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=zbH4XmSREoc"
+              "video": "https://www.youtube.com/watch?v=x-5h_QUOem8"
             },
             {
               "name": "Leg Swings",
@@ -866,7 +866,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10/رجل",
-              "video": "https://www.youtube.com/watch?v=3HfD3X4Q5zg"
+              "video": "https://www.youtube.com/watch?v=3l31E2cMGMk"
             },
             {
               "name": "World's Greatest Stretch",
@@ -906,7 +906,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 8/جانب",
-              "video": "https://www.youtube.com/watch?v=z3qhwQ4VSgU"
+              "video": "https://www.youtube.com/watch?v=gyew25Vaqj8"
             },
             {
               "name": "Ankle Mobility",
@@ -916,7 +916,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=8X1YQPZ0a-M"
+              "video": "https://www.youtube.com/watch?v=IikP_teeLkI"
             }
           ]
         }
@@ -941,7 +941,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "5 د",
-              "video": "https://www.youtube.com/watch?v=tEmt1Zn4YQ4"
+              "video": ""
             }
           ]
         },
@@ -987,7 +987,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10",
-              "video": "https://www.youtube.com/watch?v=tUMRozoU4WM"
+              "video": "https://www.youtube.com/watch?v=x4Oht5bztsk"
             },
             {
               "name": "Thoracic Spine Rotation (من وضعية الجلوس)",
@@ -997,7 +997,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 8/جانب",
-              "video": "https://www.youtube.com/watch?v=5DIzPMfgQ9c"
+              "video": "https://www.youtube.com/watch?v=j6hv8Q5QtL8"
             },
             {
               "name": "Band Pull-Aparts",
@@ -1053,7 +1053,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "× 10/كاحل",
-              "video": "https://www.youtube.com/watch?v=8X1YQPZ0a-M"
+              "video": "https://www.youtube.com/watch?v=7jOwuwNk8OM"
             },
             {
               "name": "Deep Squat Hold (حسب الراحة)",
@@ -1089,7 +1089,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "3×8/جانب",
-              "video": "https://www.youtube.com/watch?v=4E0lvDt2M9o"
+              "video": "https://www.youtube.com/watch?v=5qah1cTaJCk"
             },
             {
               "name": "Bird Dog",
@@ -1099,7 +1099,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "3×8/جانب",
-              "video": "https://www.youtube.com/watch?v=wiFNA3sqjCA"
+              "video": "https://www.youtube.com/watch?v=pS-SfFoc8uk"
             },
             {
               "name": "Cat-Cow",
@@ -1119,7 +1119,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "60 ث",
-              "video": "https://www.youtube.com/watch?v=2lOYWHw4jhc"
+              "video": "https://www.youtube.com/watch?v=kH12QrSGedM"
             },
             {
               "name": "Foam Rolling: Quads",
@@ -1129,7 +1129,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30-60 ث",
-              "video": "https://www.youtube.com/watch?v=sXy6LwdwDcc"
+              "video": "https://www.youtube.com/watch?v=wlfCkskcnF0"
             },
             {
               "name": "Foam Rolling: Hamstrings",
@@ -1139,7 +1139,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30-60 ث",
-              "video": "https://www.youtube.com/watch?v=sXy6LwdwDcc"
+              "video": "https://www.youtube.com/watch?v=7FoLY0EgdqI"
             },
             {
               "name": "Foam Rolling: Upper Back",
@@ -1149,7 +1149,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "30-60 ث",
-              "video": "https://www.youtube.com/watch?v=sXy6LwdwDcc"
+              "video": "https://www.youtube.com/watch?v=7FoLY0EgdqI"
             }
           ]
         },
@@ -1165,7 +1165,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "10-15 د",
-              "video": "https://www.youtube.com/watch?v=OdevRNWoQmM"
+              "video": ""
             }
           ]
         },
@@ -1181,7 +1181,7 @@ window.PROGRAM_DATA = {
                 "time"
               ],
               "default": "12-15 د",
-              "video": "https://www.youtube.com/watch?v=BLk7-DW8Awk"
+              "video": ""
             }
           ]
         }

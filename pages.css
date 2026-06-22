@@ -438,8 +438,31 @@ main {
   padding: 0 2px;
   user-select: none;
 }
-.ex-video-link:hover { background: #8b000d; }
-.ex-video-link svg { width: 9px; height: 9px; fill: white; }
+.ex-video-link {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #dc2626;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(220,38,38,0.3);
+}
+.ex-video-link:hover {
+  background: #b91c1c;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(220,38,38,0.5);
+}
+.ex-video-link svg {
+  width: 11px;
+  height: 11px;
+  fill: white;
+  margin-inline-start: 1px;
+}
 
 /* ═══════ INPUTS GROUP (inline, on the right) ═══════ */
 .ex-inputs {

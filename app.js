@@ -254,7 +254,7 @@ function renderProgramPhase(phase) {
         <div class="ex-actions">
           <span class="ex-default">${ex.default || ex.sets || ''}</span>
           ${ex.video ? `<a class="ex-video-link" href="${ex.video}" target="_blank" rel="noopener" aria-label="شاهد فيديو ${ex.name}">
-            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>فيديو
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 4 20 12 6 20 6 4"/></svg>
           </a>` : ''}
         </div>
       </div>
