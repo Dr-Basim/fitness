@@ -48,7 +48,10 @@ function saveToStorage() {
       settings: STATE.settings,
       updated_at: new Date().toISOString()
     }));
-    if (STATE.settings.gistToken && STATE.settings.gistId) debouncedGistSync();
+    if (STATE.settings.gistToken && STATE.settings.gistId) {
+      console.log('[Gist] triggering sync (1.5s debounce)');
+      debouncedGistSync();
+    }
   }, 300);
 }
 
@@ -60,19 +63,33 @@ function debouncedGistSync() {
 
 async function syncToGist() {
   const { gistId, gistToken } = STATE.settings;
-  if (!gistId || !gistToken) return;
+  if (!gistId || !gistToken) {
+    console.log('[Gist] skip: no settings');
+    return;
+  }
   try {
-    await fetch(`https://api.github.com/gists/${gistId}`, {
+    const body = JSON.stringify({ files: { 'fitness-data.json': { content: JSON.stringify({
+      userEdits: STATE.userEdits,
+      healthData: STATE.healthData,
+      weeklyMetrics: STATE.weeklyMetrics,
+      updated_at: new Date().toISOString()
+    }, null, 2) } } });
+    const res = await fetch(`https://api.github.com/gists/${gistId}`, {
       method: 'PATCH',
-      headers: { 'Authorization': `Bearer ${gistToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ files: { 'fitness-data.json': { content: JSON.stringify({
-        userEdits: STATE.userEdits,
-        healthData: STATE.healthData,
-        weeklyMetrics: STATE.weeklyMetrics,
-        updated_at: new Date().toISOString()
-      }, null, 2) } } })
+      headers: { 'Authorization': `Bearer ${gistToken}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body
     });
-  } catch (e) { console.warn('Gist sync failed', e); }
+    if (!res.ok) {
+      const err = await res.text();
+      console.error(`[Gist] PATCH failed: ${res.status}`, err);
+      showToast(`❌ فشل الحفظ إلى Gist (${res.status})`, 'error', 4000);
+      return;
+    }
+    console.log('[Gist] ✅ synced at', new Date().toISOString());
+  } catch (e) {
+    console.error('[Gist] sync error:', e);
+    showToast('❌ خطأ شبكة في المزامنة', 'error', 4000);
+  }
 }
 
 async function testGist() {
@@ -573,6 +590,7 @@ function initSettingsPage() {
     renderStatsSummary();
   });
   document.getElementById('btn-gist-test')?.addEventListener('click', testGist);
+  document.getElementById('btn-gist-force-sync')?.addEventListener('click', forceSyncFromUI);
   document.getElementById('btn-export-json')?.addEventListener('click', exportJSON);
   document.getElementById('btn-import-json')?.addEventListener('click', () => document.getElementById('import-file').click());
   document.getElementById('import-file')?.addEventListener('change', importJSON);
@@ -580,6 +598,30 @@ function initSettingsPage() {
   document.getElementById('btn-qr-import')?.addEventListener('click', importFromQRText);
   generateQR();
   renderStatsSummary();
+}
+
+function logSync(msg, isError = false) {
+  const el = document.getElementById('gist-sync-log');
+  if (!el) return;
+  const time = new Date().toLocaleTimeString('ar-SA');
+  const color = isError ? 'var(--t-red)' : 'var(--t-mute)';
+  el.innerHTML = `<span style="color:${color}">[${time}] ${msg}</span><br>` + el.innerHTML.split('<br>').slice(0, 4).join('<br>');
+}
+
+async function forceSyncFromUI() {
+  const btn = document.getElementById('btn-gist-force-sync');
+  if (btn) { btn.disabled = true; btn.textContent = '⏳ جاري المزامنة...'; }
+  logSync('بدء مزامنة فورية...');
+  try {
+    saveToStorage();
+    await syncToGist();
+    logSync('✅ تمت المزامنة');
+    showToast('✅ تمت مزامنة Gist');
+  } catch (e) {
+    logSync('❌ خطأ: ' + e.message, true);
+    showToast('❌ فشلت المزامنة', 'error');
+  }
+  if (btn) { btn.disabled = false; btn.textContent = '🔄 مزامنة فورية الآن'; }
 }
 
 function importFromQRText() {
