@@ -577,8 +577,38 @@ function initSettingsPage() {
   document.getElementById('btn-import-json')?.addEventListener('click', () => document.getElementById('import-file').click());
   document.getElementById('import-file')?.addEventListener('change', importJSON);
   document.getElementById('btn-reset')?.addEventListener('click', resetAll);
+  document.getElementById('btn-qr-import')?.addEventListener('click', importFromQRText);
   generateQR();
   renderStatsSummary();
+}
+
+function importFromQRText() {
+  const input = document.getElementById('qr-import-text');
+  const status = document.getElementById('qr-import-status');
+  if (!input || !status) return;
+  const raw = input.value.trim();
+  if (!raw) {
+    status.innerHTML = '<span style="color:var(--t-red)">ألصق النص أولاً</span>';
+    return;
+  }
+  try {
+    const data = JSON.parse(raw);
+    if (!data.gistId || !data.gistToken) {
+      status.innerHTML = '<span style="color:var(--t-red)">❌ النص لا يحوي gistId + gistToken</span>';
+      return;
+    }
+    STATE.settings.gistId = data.gistId;
+    STATE.settings.gistToken = data.gistToken;
+    document.getElementById('gist-id').value = data.gistId;
+    document.getElementById('gist-token').value = data.gistToken;
+    saveToStorage();
+    generateQR();
+    renderStatsSummary();
+    status.innerHTML = '<span style="color:var(--t-green)">✅ تم الاستيراد</span>';
+    showToast('✅ تم استيراد الإعدادات من QR');
+  } catch (e) {
+    status.innerHTML = `<span style="color:var(--t-red)">❌ ليس JSON صالح: ${e.message}</span>`;
+  }
 }
 
 function renderStatsSummary() {
@@ -603,12 +633,35 @@ function generateQR() {
     area.innerHTML = '<p style="color:var(--t-mute);font-size:0.78rem">احفظ الإعدادات أولاً</p>';
     return;
   }
-  const data = encodeURIComponent(JSON.stringify({ gistId, gistToken }));
-  const url = `https://chart.googleapis.com/chart?chs=180x180&cht=qr&chl=${data}`;
-  area.innerHTML = `
-    <img src="${url}" alt="QR" />
-    <p style="font-size:0.68rem;color:var(--t-mute)">امسح من الجوال لإعدادات Gist</p>
-  `;
+  // Embed gistId + gistToken as JSON (simple text for QR)
+  const payload = JSON.stringify({ gistId, gistToken });
+  // Clear old content
+  area.innerHTML = '';
+  // Use local qrcode.min.js (offline-capable, no external API)
+  if (typeof QRCode !== 'undefined') {
+    try {
+      new QRCode(area, {
+        text: payload,
+        width: 180,
+        height: 180,
+        colorDark: '#0D6B6E',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    } catch (e) {
+      area.innerHTML = `<p style="color:var(--t-red);font-size:0.78rem">خطأ في توليد QR: ${e.message}</p>`;
+      return;
+    }
+  } else {
+    // Fallback: show payload as text (degraded)
+    area.innerHTML = `<pre style="font-size:0.7rem;text-align:left;background:#f5f5f5;padding:0.5rem;border-radius:6px;overflow:auto">${payload}</pre>`;
+    return;
+  }
+  // Add hint below QR
+  const hint = document.createElement('p');
+  hint.style.cssText = 'font-size:0.68rem;color:var(--t-mute);margin-top:0.4rem';
+  hint.textContent = 'امسح من الجوال لإعدادات Gist';
+  area.appendChild(hint);
 }
 
 function exportJSON() {

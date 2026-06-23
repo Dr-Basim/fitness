@@ -7,6 +7,7 @@
   <title>🏋️ Fitness Tracker v5 — Dr. Basim</title>
   <link rel="stylesheet" href="assets/fonts.css" />
   <link rel="stylesheet" href="pages.css" />
+  <script src="assets/qrcode.min.js" defer></script>
   <!-- Chart.js — يُحمَّل دائماً لكن نادراً يُستخدم (فقط في قسم الصحة) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 </head>
@@ -104,6 +105,17 @@
       <div class="qr-area" id="qr-area">
         <p style="color:var(--t-mute);font-size:0.78rem">احفظ الإعدادات أولاً</p>
       </div>
+    </div>
+
+    <div class="setting-card">
+      <h3>📥 إعدادات من QR</h3>
+      <p>لو عندك QR من كمبيوتر آخر، ألصق النص هنا لاستيراد الإعدادات.</p>
+      <div class="setting-row">
+        <label>الصق محتوى QR</label>
+        <input type="text" id="qr-import-text" placeholder='{"gistId":"...","gistToken":"..."}' />
+      </div>
+      <button class="btn" id="btn-qr-import">📥 استيراد من QR</button>
+      <span id="qr-import-status" style="font-size:0.8rem;color:var(--t-mute);margin-inline-start:0.5rem"></span>
     </div>
 
     <div class="setting-card">
