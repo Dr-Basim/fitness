@@ -12,3 +12,6 @@ settings.html
 # ملفات النظام
 .DS_Store
 Thumbs.db
+
+# Local backup files (v3.1.0 broken + pre-fix original)
+backup/
