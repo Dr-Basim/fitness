@@ -144,14 +144,12 @@ async function pullFromGist() {
     return { ok: false, reason: 'no-settings' };
   }
   try {
-    // Cache busting: timestamp في URL + no-cache headers (درس 22 يونيو)
+    // Cache busting عبر timestamp في URL كافٍ — لا نرسل Cache-Control/Pragma
+    // لأن GitHub API CORS يرفضهما في preflight (راجع تشخيص 25 يونيو)
     const url = `https://api.github.com/gists/${gistId}?_=${Date.now()}`;
     const res = await fetch(url, {
       headers: {
-        'Authorization': `Bearer ${gistToken}`,
-        'Accept': 'application/vnd.github+json',
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache'
+        'Authorization': `Bearer ${gistToken}`
       }
     });
     if (!res.ok) {
