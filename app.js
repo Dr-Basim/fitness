@@ -17,10 +17,48 @@ const STORAGE_KEY = 'fitness_v4_state';
 const TODAY = new Date();
 const TODAY_DAY_NUM = 1; // (Math.floor((TODAY - new Date(2026, 5, 21)) / 86400000) % 5) + 1;
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   loadFromStorage();
   if (!STATE.program) {
     showToast('⚠️ تعذّر تحميل البيانات', 'error', 4000);
+  }
+
+  // ═══ v3.1.0: مزامنة فورية عند الفتح (pull from Gist) ═══
+  if (STATE.settings.gistId && STATE.settings.gistToken) {
+    const result = await pullFromGist();
+    if (result.ok && result.data) {
+      const changed = await applyRemoteData(result.data);
+      if (changed) {
+        // أعد رسم الـ UI بالبيانات الجديدة
+        const currentSection = (location.hash || '#program').replace('#', '');
+        if (currentSection === 'tracker') renderTrackerDay(TODAY_DAY_NUM);
+        if (currentSection === 'health') initHealthPage();
+        updateProgress();
+        showToast('☁️ تم جلب آخر البيانات من Gist', 'info', 3000);
+      }
+    } else if (!result.ok && result.reason !== 'no-settings' && result.reason !== 'empty') {
+      showToast('⚠️ تعذّر الجلب من Gist — تعمل محلياً', 'info', 3000);
+    }
+  } else {
+    console.log('[Sync] Gist غير مُعد — يعمل محلياً فقط');
+  }
+
+  // ═══ v3.1.0: مزامنة دورية كل 5 دقائق (polling) ═══
+  if (STATE.settings.gistId && STATE.settings.gistToken) {
+    setInterval(async () => {
+      if (document.hidden) return;  // لا تزامن والتبويب مخفي
+      const result = await pullFromGist();
+      if (result.ok && result.data) {
+        const changed = await applyRemoteData(result.data);
+        if (changed) {
+          const currentSection = (location.hash || '#program').replace('#', '');
+          if (currentSection === 'tracker') renderTrackerDay(TODAY_DAY_NUM);
+          if (currentSection === 'health') initHealthPage();
+          updateProgress();
+          showToast('☁️ تم تحديث البيانات من السحابة', 'info', 2500);
+        }
+      }
+    }, 5 * 60 * 1000);
   }
 });
 
@@ -33,6 +71,7 @@ function loadFromStorage() {
       STATE.healthData = s.healthData || [];
       STATE.weeklyMetrics = s.weeklyMetrics || STATE.weeklyMetrics;
       STATE.settings = s.settings || { gistId: '', gistToken: '' };
+      STATE._localUpdatedAt = s.updated_at || null;  // v3.1.0: مفتاح last-write-wins
     }
   } catch (e) { console.error('loadFromStorage failed', e); }
 }
@@ -41,12 +80,13 @@ let saveTimer = null;
 function saveToStorage() {
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
+    STATE._localUpdatedAt = new Date().toISOString();  // v3.1.0: مفتاح last-write-wins
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       userEdits: STATE.userEdits,
       healthData: STATE.healthData,
       weeklyMetrics: STATE.weeklyMetrics,
       settings: STATE.settings,
-      updated_at: new Date().toISOString()
+      updated_at: STATE._localUpdatedAt
     }));
     if (STATE.settings.gistToken && STATE.settings.gistId) {
       console.log('[Gist] triggering sync (1.5s debounce)');
@@ -90,6 +130,76 @@ async function syncToGist() {
     console.error('[Gist] sync error:', e);
     showToast('❌ خطأ شبكة في المزامنة', 'error', 4000);
   }
+}
+
+// ════════════════════════════════════════════════════════════
+//  PULL FROM GIST (fetch on load) — v3.1.0 إصلاح مزامنة ثنائية الاتجاه
+//  — يجلب آخر البيانات من Gist عند فتح الصفحة أو مزامنتها يدوياً
+//  — يحمي من iOS Safari HTTP cache عبر cache-busting + no-cache headers
+//  — يرجع { ok, data, reason } واضحة للمعالجة في المستدعي
+// ════════════════════════════════════════════════════════════
+async function pullFromGist() {
+  const { gistId, gistToken } = STATE.settings;
+  if (!gistId || !gistToken) {
+    return { ok: false, reason: 'no-settings' };
+  }
+  try {
+    // Cache busting: timestamp في URL + no-cache headers (درس 22 يونيو)
+    const url = `https://api.github.com/gists/${gistId}?_=${Date.now()}`;
+    const res = await fetch(url, {
+      headers: {
+        'Authorization': `Bearer ${gistToken}`,
+        'Accept': 'application/vnd.github+json',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache'
+      }
+    });
+    if (!res.ok) {
+      console.error(`[Gist] GET failed: ${res.status}`);
+      return { ok: false, reason: 'http-' + res.status };
+    }
+    const data = await res.json();
+    const content = data.files?.['fitness-data.json']?.content;
+    if (!content) {
+      console.log('[Gist] pull: file empty (first sync)');
+      return { ok: false, reason: 'empty' };
+    }
+    const remote = JSON.parse(content);
+    return { ok: true, data: remote };
+  } catch (e) {
+    console.error('[Gist] pull error:', e);
+    return { ok: false, reason: 'network', error: e };
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+//  APPLY REMOTE DATA — v3.1.0 استراتيجية last-write-wins
+//  — يقارن updated_at البعيد والمحلي، يطبق الأحدث فقط
+//  — يحفظ في localStorage فوراً (حتى لو فشل PUSH لاحقاً)
+//  — يرجع true لو تغيّرت البيانات (ليعيد المستدعي رسم UI)
+// ════════════════════════════════════════════════════════════
+async function applyRemoteData(remote) {
+  if (!remote) return false;
+  const remoteTime = remote.updated_at || '1970-01-01T00:00:00Z';
+  const localTime = STATE._localUpdatedAt || '1970-01-01T00:00:00Z';
+  if (new Date(remoteTime) <= new Date(localTime)) {
+    console.log(`[Gist] apply: local newer (${localTime} >= ${remoteTime}) → keep local`);
+    return false;
+  }
+  console.log(`[Gist] apply: remote newer (${remoteTime} > ${localTime}) → applying`);
+  STATE.userEdits = remote.userEdits || {};
+  STATE.healthData = remote.healthData || [];
+  STATE.weeklyMetrics = remote.weeklyMetrics || STATE.weeklyMetrics;
+  STATE._localUpdatedAt = remoteTime;
+  // احفظ في localStorage فوراً — حتى لو فشل sync لاحقاً، البيانات محفوظة محلياً
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    userEdits: STATE.userEdits,
+    healthData: STATE.healthData,
+    weeklyMetrics: STATE.weeklyMetrics,
+    settings: STATE.settings,
+    updated_at: STATE._localUpdatedAt
+  }));
+  return true;
 }
 
 async function testGist() {
@@ -613,10 +723,25 @@ async function forceSyncFromUI() {
   if (btn) { btn.disabled = true; btn.textContent = '⏳ جاري المزامنة...'; }
   logSync('بدء مزامنة فورية...');
   try {
+    // v3.1.0: سحب أولاً (يجلب أي تعديلات من جهاز آخر)
+    const pullResult = await pullFromGist();
+    let pulled = false;
+    if (pullResult.ok && pullResult.data) {
+      pulled = await applyRemoteData(pullResult.data);
+      if (pulled) {
+        // أعد الرسم بالبيانات الجديدة
+        const currentSection = (location.hash || '#program').replace('#', '');
+        if (currentSection === 'tracker') renderTrackerDay(TODAY_DAY_NUM);
+        if (currentSection === 'health') initHealthPage();
+        updateProgress();
+        showToast('☁️ تم جلب بيانات جديدة من Gist');
+      }
+    }
+    // ثم دفع (يرسل التعديلات المحلية)
     saveToStorage();
     await syncToGist();
-    logSync('✅ تمت المزامنة');
-    showToast('✅ تمت مزامنة Gist');
+    logSync(pulled ? '✅ سحب + دفع' : '✅ دفع (لا جديد للسحب)');
+    if (!pulled) showToast('✅ تمت مزامنة Gist');
   } catch (e) {
     logSync('❌ خطأ: ' + e.message, true);
     showToast('❌ فشلت المزامنة', 'error');
